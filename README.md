@@ -8,6 +8,11 @@ A sample RingCentral SDK in Ruby.
 This repository is to demonstrate how to add a new language to the [rc-codegen](https://github.com/tylerlong/rc-codegen) project.
 
 
+## Generated code and manually written code
+
+`src/paths.rb` is auto-generated, others are manually written.
+
+
 ## How to test
 
 Create `.env` file with the following content:
@@ -23,4 +28,4 @@ password=password
 receiver=number-to-receiver-sms
 ```
 
-Run `ruby test.rb`
+Run `ruby test/requests.rb`
