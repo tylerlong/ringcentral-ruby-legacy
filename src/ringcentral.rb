@@ -42,6 +42,12 @@ class RingCentral
     execute(:delete, endpoint, nil, params)
   end
 
+  def restapi(id = nil)
+    Restapi.new(self, PathSegment.new(self, nil), id)
+  end
+
+  private
+
   def execute(method, endpoint, payload = nil, params = nil)
     url = File.join(@server, endpoint)
     headers = {
@@ -54,12 +60,6 @@ class RingCentral
     headers['params'] = params if params
     RestClient::Request.execute(method: method, url: url, payload: payload, headers: headers)
   end
-
-  def restapi(id = nil)
-    Restapi.new(PathSegment.new(self), id)
-  end
-
-  private
 
   def basic_key
     Base64.encode64("#{@app_key}:#{@app_secret}").gsub(/\s/, '')

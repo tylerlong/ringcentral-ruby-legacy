@@ -1,7 +1,9 @@
 # parent class for all path segments
 class PathSegment
-  def initialize(rc)
-    @_rc = rc
+  def initialize(rc, parent, id = nil)
+    @rc = rc
+    @parent = parent
+    @id = id
   end
 
   def segment
@@ -9,20 +11,29 @@ class PathSegment
   end
 
   def endpoint
+    result = segment
     if @parent
-      temp = File.join(@parent.endpoint, segment, @id || '')
-      temp = temp[0...-1] if temp.end_with? '/'
-      temp
-    else
-      segment
+      result = File.join @parent.endpoint, result
     end
+    if @id
+      result = File.join result, @id
+    end
+    result
   end
 
-  def rc
-    if @parent
-      @parent.rc
-    else
-      @_rc
-    end
+  def getResponse(params = nil)
+    @rc.get endpoint, params
+  end
+
+  def postResponse(payload, params = nil)
+    @rc.post endpoint, payload, params
+  end
+
+  def putResponse(payload, params = nil)
+    @rc.put endpoint, payload, params
+  end
+
+  def deleteResponse(params = nil)
+    @rc.delete endpoint, params
   end
 end
