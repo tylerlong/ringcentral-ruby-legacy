@@ -3,7 +3,7 @@ require 'base64'
 require 'json'
 
 require_relative './pathSegment'
-require_relative './paths/restapi'
+require_relative './paths'
 
 # The entry point class for this library
 class RingCentral
