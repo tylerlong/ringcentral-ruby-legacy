@@ -1,4 +1,8 @@
 source "https://rubygems.org"
 
 gem 'rest-client'
-gem 'dotenv'
+
+group :development do
+  gem 'dotenv'
+  gem 'rubocop'
+end

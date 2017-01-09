@@ -4,8 +4,8 @@ Dotenv.load
 require_relative './ringcentral'
 
 production = ENV['production'] == 'true'
-appKey = ENV['appKey']
-appSecret = ENV['appSecret']
+app_key = ENV['appKey']
+app_secret = ENV['appSecret']
 server = ENV['server']
 username = ENV['username']
 extension = ENV['extension']
@@ -13,7 +13,7 @@ password = ENV['password']
 receiver = ENV['receiver']
 
 
-rc = RingCentral.new(appKey, appSecret, server)
+rc = RingCentral.new(app_key, app_secret, server)
 rc.authorize(username, extension, password)
 
 # GET
