@@ -11,26 +11,38 @@ class RingCentral
     end
 
     def authorize(username, extension, password)
-        url = @server + '/restapi/oauth/token'
+        url = File.join(@server, '/restapi/oauth/token')
         body = {
-           'username' => username,
-           'extension' => extension,
-           'password' => password,
-           'grant_type' => "password",
+           'username': username,
+           'extension': extension,
+           'password': password,
+           'grant_type': 'password',
          }
         header = {
-            'Authorization': "Basic #{basicKey}"
+            'Authorization': autorizationHeader
         }
         response = RestClient.post(url, body, header)
         @token = JSON.parse(response.body)
     end
 
     def get(endpoint, params = nil)
-      url = @server + endpoint
-      headers = {}
+      url = File.join(@server, endpoint)
+      headers = {
+        'Authorization': autorizationHeader
+      }
       headers['params'] = params if params
-      headers['Authorization'] = "Bearer #{@token['access_token']}" if @token
       response = RestClient.get(url, headers)
+      puts response
+    end
+
+    def post(endpoint, body, params = nil)
+      url = File.join(@server, endpoint)
+      headers = {
+        'Authorization': autorizationHeader,
+        'Content-Type': 'application/json',
+      }
+      headers['params'] = params if params
+      response = RestClient.post(url, body.to_json, headers)
       puts response
     end
 
@@ -38,5 +50,13 @@ class RingCentral
 
     def basicKey
         Base64.encode64("#{@appKey}:#{@appSecret}").gsub(/\s/, '')
+    end
+
+    def autorizationHeader
+      if @token
+        "Bearer #{@token['access_token']}"
+      else
+        "Basic #{basicKey}"
+      end
     end
 end
