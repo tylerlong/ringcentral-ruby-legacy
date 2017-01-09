@@ -31,25 +31,11 @@ class RingCentral
   end
 
   def post(endpoint, payload, params = nil)
-    url = File.join(@server, endpoint)
-    headers = {
-      Authorization: autorization_header,
-      'Content-Type' => 'application/json'
-    }
-    headers['params'] = params if params
-    response = RestClient.post(url, payload.to_json, headers)
-    response
+    execute(:post, endpoint, payload, params)
   end
 
   def put(endpoint, payload, params = nil)
-    url = File.join(@server, endpoint)
-    headers = {
-      Authorization: autorization_header,
-      'Content-Type' => 'application/json'
-    }
-    headers['params'] = params if params
-    response = RestClient.put(url, payload.to_json, headers)
-    response
+    execute(:put, endpoint, payload, params)
   end
 
   def delete(endpoint, params = nil)
@@ -61,8 +47,9 @@ class RingCentral
     headers = {
       Authorization: autorization_header
     }
-    if method == :post || method == :put
+    if payload
       headers['Content-Type'] = 'application/json'
+      payload = payload.to_json
     end
     headers['params'] = params if params
     RestClient::Request.execute(method: method, url: url, payload: payload, headers: headers)
