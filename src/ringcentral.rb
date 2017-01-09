@@ -55,6 +55,10 @@ class RingCentral
     RestClient::Request.execute(method: method, url: url, payload: payload, headers: headers)
   end
 
+  def restapi(id = nil)
+    Restapi.new(PathSegment.new(self), id)
+  end
+
   private
 
   def basic_key

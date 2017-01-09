@@ -1,7 +1,7 @@
 require 'dotenv'
 Dotenv.load
 
-require_relative './ringcentral'
+require_relative '../src/ringcentral'
 
 production = ENV['production'] == 'true'
 app_key = ENV['appKey']
