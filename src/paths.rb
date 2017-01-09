@@ -10,6 +10,10 @@ class Restapi < PathSegment
   def dictionary
     Dictionary.new(@rc, self)
   end
+
+  def get
+    JSON.parse(getResponse)
+  end
 end
 
 
@@ -29,5 +33,9 @@ end
 class Country < PathSegment
   def segment
     'country'
+  end
+
+  def get
+    JSON.parse(getResponse)
   end
 end
