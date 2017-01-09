@@ -1,4 +1,4 @@
-require_relative './pathSegment'
+require_relative '../pathSegment'
 
 # The starting segment of all endpoints
 class Restapi < PathSegment

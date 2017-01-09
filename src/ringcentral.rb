@@ -2,6 +2,9 @@ require 'rest-client'
 require 'base64'
 require 'json'
 
+require_relative './pathSegment'
+require_relative './paths/restapi'
+
 # The entry point class for this library
 class RingCentral
   def initialize(app_key, app_secret, server)
