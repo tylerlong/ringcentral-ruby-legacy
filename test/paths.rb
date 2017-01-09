@@ -7,3 +7,5 @@ puts rc.restapi().endpoint
 puts rc.restapi('v1.0').endpoint
 
 puts rc.restapi('v1.0').dictionary().endpoint
+puts rc.restapi('v1.0').dictionary().country().endpoint
+puts rc.restapi('v1.0').dictionary().country('46').endpoint

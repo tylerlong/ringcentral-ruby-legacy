@@ -1,7 +1,7 @@
 require_relative './pathSegment'
 
 
-# The starting segment of all endpoints
+# /restapi/v1.0
 class Restapi < PathSegment
   def segment
     'restapi'
@@ -13,9 +13,21 @@ class Restapi < PathSegment
 end
 
 
-# /rest/v1.0/dictionary
+# /restapi/v1.0/dictionary
 class Dictionary < PathSegment
   def segment
     'dictionary'
+  end
+
+  def country(id = nil)
+    Country.new(@rc, self, id)
+  end
+end
+
+
+# /restapi/v1.0/dictionary/country/46
+class Country < PathSegment
+  def segment
+    'country'
   end
 end
