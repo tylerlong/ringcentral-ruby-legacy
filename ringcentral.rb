@@ -1,11 +1,13 @@
 require 'rest-client'
 require 'base64'
+require 'json'
 
 class RingCentral
     def initialize(appKey, appSecret, server)
         @appKey = appKey
         @appSecret = appSecret
         @server = server
+        @token = nil
     end
 
     def authorize(username, extension, password)
@@ -20,7 +22,16 @@ class RingCentral
             'Authorization': "Basic #{basicKey}"
         }
         response = RestClient.post(url, body, header)
-        puts response
+        @token = JSON.parse(response.body)
+    end
+
+    def get(endpoint, params = nil)
+      url = @server + endpoint
+      headers = {}
+      headers['params'] = params if params
+      headers['Authorization'] = "Bearer #{@token['access_token']}" if @token
+      response = RestClient.get(url, headers)
+      puts response
     end
 
     private

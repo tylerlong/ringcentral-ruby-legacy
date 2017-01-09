@@ -13,3 +13,4 @@ password = ENV['password']
 
 rc = RingCentral.new(appKey, appSecret, server)
 rc.authorize(username, extension, password)
+rc.get('/restapi/v1.0/account/~/extension/~')
