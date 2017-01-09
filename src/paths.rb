@@ -1,3 +1,4 @@
+require 'hashie'
 require_relative './pathSegment'
 
 
@@ -12,7 +13,7 @@ class Restapi < PathSegment
   end
 
   def get
-    JSON.parse(getResponse)
+    Hashie::Mash.new JSON.parse(getResponse)
   end
 end
 
@@ -36,6 +37,6 @@ class Country < PathSegment
   end
 
   def get
-    JSON.parse(getResponse)
+    Hashie::Mash.new JSON.parse(getResponse)
   end
 end

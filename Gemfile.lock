@@ -5,6 +5,7 @@ GEM
     domain_name (0.5.20161129)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
+    hashie (3.4.6)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     mime-types (3.1)
@@ -36,6 +37,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv
+  hashie
   rest-client
   rubocop
 

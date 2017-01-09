@@ -18,6 +18,6 @@ country = dictionary.country('46').get
 puts country['id']
 puts country['name']
 puts country['isoCode']
-# puts country.id
-# puts country.name
-# puts country.isoCode
+puts country.id
+puts country.name
+puts country.isoCode
