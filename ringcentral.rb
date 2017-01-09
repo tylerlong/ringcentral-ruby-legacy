@@ -26,13 +26,7 @@ class RingCentral
     end
 
     def get(endpoint, params = nil)
-      url = File.join(@server, endpoint)
-      headers = {
-        'Authorization': autorizationHeader
-      }
-      headers['params'] = params if params
-      response = RestClient.get(url, headers)
-      response
+      return execute(:get, endpoint, nil, params)
     end
 
     def post(endpoint, payload, params = nil)

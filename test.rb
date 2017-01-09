@@ -17,8 +17,8 @@ rc = RingCentral.new(appKey, appSecret, server)
 rc.authorize(username, extension, password)
 
 # GET
-# response = rc.get('/restapi/v1.0/account/~/extension/~')
-# puts response
+response = rc.get('/restapi/v1.0/account/~/extension/~')
+puts response
 
 # POST
 # response = rc.post('/restapi/v1.0/account/~/extension/~/sms', { to: [{ phoneNumber: receiver }], from: { phoneNumber: username }, text: 'Hello world' })
@@ -31,7 +31,7 @@ rc.authorize(username, extension, password)
 # puts response
 
 # DELETE
-response = rc.post('/restapi/v1.0/account/~/extension/~/sms', { to: [{ phoneNumber: receiver }], from: { phoneNumber: username }, text: 'Hello world' })
-messageId = JSON.parse(response)['id']
-response = rc.delete("/restapi/v1.0/account/~/extension/~/message-store/#{messageId}", { purge: false })
-puts response.code
+# response = rc.post('/restapi/v1.0/account/~/extension/~/sms', { to: [{ phoneNumber: receiver }], from: { phoneNumber: username }, text: 'Hello world' })
+# messageId = JSON.parse(response)['id']
+# response = rc.delete("/restapi/v1.0/account/~/extension/~/message-store/#{messageId}", { purge: false })
+# puts response.code
