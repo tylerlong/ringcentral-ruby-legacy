@@ -32,7 +32,7 @@ class RingCentral
       }
       headers['params'] = params if params
       response = RestClient.get(url, headers)
-      puts response
+      response
     end
 
     def post(endpoint, body, params = nil)
@@ -43,7 +43,18 @@ class RingCentral
       }
       headers['params'] = params if params
       response = RestClient.post(url, body.to_json, headers)
-      puts response
+      response
+    end
+
+    def put(endpoint, body, params = nil)
+      url = File.join(@server, endpoint)
+      headers = {
+        'Authorization': autorizationHeader,
+        'Content-Type': 'application/json',
+      }
+      headers['params'] = params if params
+      response = RestClient.put(url, body.to_json, headers)
+      response
     end
 
     private
